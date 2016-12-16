@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+import random
 import urllib
 import json
 import os
@@ -11,9 +12,13 @@ from flask import make_response
 app = Flask(__name__)
 key = ""
 lang = ""
+error_msg = [""]
+typeIA = ""
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
+    print("Request:" + json.dumps(req, indent=4) + "")
     res = processRequest(req)
     res = json.dumps(res, indent=4)
     r = make_response(res)
@@ -31,27 +36,33 @@ def processRequest(req):
             return "ERRO!"
         if lang is None:
             return "ERRO!"
-    url = baseurl + urllib.urlencode({'text': texto_url.encode('utf8')}) + "&key=" + key + "&lc=" + lang + "&ft=2.3"
+    url = baseurl + urllib.urlencode({'text': texto_url.encode('utf8')}) + "&key=" + key + "&lc=" + lang + "&ft=" + typeIA + ""
     result = urllib.urlopen(url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
     return res
-
 def makeTextQuery(req):
     result = req.get("result")
-    parameters = result.get("parameters")
-    mentioned_text = parameters.get("any")
+    mentioned_text = result.get("resolvedQuery")
     if mentioned_text is None:
-        return {}
+        return {
+            "speech": random.choice(error_msg),
+            "displayText": random.choice(error_msg),
+            "source": "ApiSimsimi"
+        }
     return "" + mentioned_text + ""
 
 def makeWebhookResult(data):
     speech = data.get('response')
     erro = data.get('result')
     if (speech is None) or (erro is "404") or None:
-        return {}
+        return {
+            "speech": random.choice(error_msg),
+            "displayText": random.choice(error_msg),
+            "source": "ApiSimsimi"
+        }
     mensagem = speech.encode('utf8')
-    print("Response:", mensagem)
+    print("Response: " + mensagem + "")
     return {
         "speech": mensagem,
         "displayText": mensagem,
