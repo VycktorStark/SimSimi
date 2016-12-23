@@ -11,6 +11,8 @@ Open the `app.py` file and add your key and language, set the messages for error
 
 >> * typeIA = "2.3"
 
+>> * src ="code request from html from posting"
+
 Then create an account at https://api.ai/ and follow the steps below
 
 * Step 1
