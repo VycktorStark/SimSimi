@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
-# encoding: utf-8
+# -*- coding:utf-8 -*-
 
 import random, urllib, json, os
 from flask import flash, request, render_template, Flask, make_response
@@ -31,14 +30,22 @@ def processRequest(req):
     texto_url = req.get("result").get("resolvedQuery")
     if texto_url is None:
         return {
-            "speech": random.choice(error_msg),
-            "displayText": random.choice(error_msg),
+            "speech": "ERROR BOT! " + random.choice(error_msg),
+            "displayText": "ERROR BOT! " + random.choice(error_msg),
             "source": "ApiSimsimi"
         }
         if key is None:
-            return "ERRO!"
+            return {
+                "speech": "ERROR BOT! Missing the key",
+                "displayText": "ERROR BOT! Missing the key",
+                "source": "ApiSimsimi"
+            }
         if lang is None:
-            return "ERRO!"
+            return {
+                "speech": "ERROR BOT! Missing the lang",
+                "displayText": "ERROR BOT! Missing the lang",
+                "source": "ApiSimsimi"
+            }
     url = baseurl + urllib.urlencode({'text': texto_url.encode('utf8')}) + "&key=" + key + "&lc=" + lang + "&ft=" + typeIA + ""
     result = urllib.urlopen(url).read()
     data = json.loads(result)
@@ -46,8 +53,8 @@ def processRequest(req):
     erro = data.get('result')
     if (speech is None) or (erro is "404") or None:
         return {
-            "speech": random.choice(error_msg),
-            "displayText": random.choice(error_msg),
+            "speech": "ERROR BOT! " + random.choice(error_msg),
+            "displayText": "ERROR BOT! " + random.choice(error_msg),
             "source": "ApiSimsimi"
         }
     mensagem = speech.encode('utf8')
@@ -60,5 +67,5 @@ def processRequest(req):
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
-    print "Starting app on port: %d" % port
+    print("Starting app on port: %d" % port)
     app.run(debug=False, port=port, host='0.0.0.0')
