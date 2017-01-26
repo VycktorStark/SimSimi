@@ -1,1 +1,9 @@
 Flask==0.10.1
+Flask-API==0.6.2
+Flask-WTF==0.9.4
+heroku==0.1.4
+python-dateutil==1.5
+objectjson
+requests
+simplejson
+dataset
