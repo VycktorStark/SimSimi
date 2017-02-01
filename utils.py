@@ -11,5 +11,5 @@ def api(self):
     params['ft'] = config.typeIA
     res_obj, res_str = request_json(url=url_api, params=params)
     if not res_str:
-        return random.choice(config.error_msg
+        return random.choice(config.error_msg)
     return res_obj.response.encode('utf8')
