@@ -1,93 +1,46 @@
-## Instructions:
-Open the `config.py` file and to configure it, you will add your keys and add the other information as requested - follow the example below:
+## Getting Started
 
-------------
-<table><thead>
-<tr><td><strong>Parameters</strong></td><td><strong>Type</strong></td><td><strong>Required</strong></td></tr>
-</thead><tbody>
-    <tr><td>timeout</td><td>Integer</td><td>Yes</td></tr>
-    <tr><td>debug</td><td>True or False</td><td>Yes</td></tr>
-    <tr><td>source</td><td>String</td><td>Optional</td></tr>
-    <tr><td>key</td><td>String and Integer</td><td>Yes</td>
-    <tr><td>lang</td><td>String</td><td>Yes</td></tr>
-    <tr><td>typeIA</td><td>Integer</td><td>Yes</td></tr></tr>
-</table>
-------------
+This is a project that will use the simsimi API to create a chatterbot on the telegram to chat with other users, which can be used for testing purposes.
 
-Then create an account at https://api.ai/ and follow the steps below
+Below, I am providing instructions for you to have a copy of the project. These instructions will show you how to start using it for learning, development and testing purposes.
+
+## Configuring the bot to run on the terminal
+You must have your machine up to date and have Python 3 installed, as well as some modules, such as: flask and requests, if you don't have it, you will need to install it this way here:
+```
+# Tested on Ubuntu 14.04, 15.04 and 16.04, Debian 7, Linux Mint 17.2
+$ sudo apt-get update && sudo apt-get upgrade   
+$ sudo apt install python3 && python3-pip
+$ sudo pip3 install flask && requests
+```
+With everything installed, we will clone the repository like this:
+
+```
+$ git clone https://github.com/VycktorStark/SimSimi.git
+```
+
+With the repository installed, you must have the bot token created by [BotFather] (http://telegram.me/BotFather); if you don't have one, you'll need to create one (more information on [official robot FAQ page]) (https://core.telegram.org/bots/faq#what-messages-will-my-bot-get ))
+
+To add your token to the project, I advise you to configure your ".bashrc", putting something like:
+```
+export LN="en"
+export SECRET_KEY="12918981:dFwnfweFw2oju28ru239r8389iEJOIJO"
+export SECRET_KEY_SIMSIMI="dFw1weFs212w8r2u239r813JO9"
+```
+
+Or just configure the `tools.py`, To obtain a simsimi token key to use this project, visit [developer.simsimi.com](http://developer.simsimi.com/signUp), where you will find all instructions
+Note: this API is paid according to usage, and the free version can be used for the period of time established; see this information directly on the [website](http://developer.simsimi.com/pricing)
+
+## Boot process
+
+- To start the bot, run: sudo ./main.py
+- To stop the bot, press Ctrl + C.
+You can also start the bot with python3 main.py
+
+
+## Configuring the bot to run on heroku
+
+Click the button below and configure your language, also setting your bot's token.
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-
-* Step 3
-
-The Heroku site will open and you will be asked to fill in the name of the application. Enter the name of the application (choose any name) and click the 'Deploy for Free' button.
-
-
-* Step 4
-
-Create an API.AI agent and enable webhook:
-
- - Click on Fulfillment in the left side menu
-
- - Turn Webhook on
-
- - Insert the link `https://[App Name].herokuapp.com/webhook` into the URL field
-
- - Click ‘Save’.
-
- ------------
-
-![Print-exemplo01](http://i.imgur.com/fTL2RgE.png)
-
-------------
-
-For your own service, you may want to secure it with basic auth and/or headers (if you don’t want other people using your web hooks).
-
-* Step 5
-
-Create a return intent that matches your artificial intelligence requests. The action should be set to `ApiSimsimi`, make sure the 'Enable webhook for this intent' option in the 'Fulfillment' section is checked. And the 'Text response' field, define the response that will be displayed in case of web service errors, do the same for the other function, but define the action of each as defined in the 'app.py' file
-
-* Step 6
-
-Now you can test simsimi artificial intelligence requests on the test console API.AI
-
-## In the returned JSON, the “fulfillment” object will look like this:
-```bash
-{
-  "id": "2j3nb2obh3ob2o3bo2-b3olkn2lk3n2",
-  "timestamp": "2017-01-05T22:52:17.269Z",
-  "result": {
-    "source": "agent",
-    "resolvedQuery": "simsimi",
-    "action": "ApiSimsimi",
-    "actionIncomplete": false,
-    "parameters": {
-      "any": "simsimi"
-    },
-    "contexts": [],
-    "metadata": {
-      "intentId": "j2bn3oj-kb2j3blj2bn3ljb2ljk3bjkl",
-      "webhookUsed": "true",
-      "webhookForSlotFillingUsed": "true",
-      "intentName": "IA"
-    },
-    "fulfillment": {
-      "speech": "oi vagabundo\n\n",
-      "source": "SimSimi",
-      "messages": [
-        {
-          "type": 0,
-          "speech": "oi vagabundo?\n\n"
-        }
-      ]
-    },
-    "score": 1
-  },
-  "status": {
-    "code": 200,
-    "errorType": "success"
-  },
-  "sessionId": "21hkj12bh3kjb1k3bb23bk-jb2jk3b"
-}
-```
+Only that, the project will already be working.
