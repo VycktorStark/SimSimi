@@ -1,8 +1,22 @@
 {
   "name": "Simsimi",
-  "description": "Bot do Simsimi Para o Telegram",
-  "repository": "https://github.com/VycktorStark/api-api-simisimi",
+  "description": "Project to transform Simsimi's api into a bot for Telegram using the API-TELEGRAM-BOT",
+  "repository": "https://github.com/VycktorStark/SimSimi",
   "logo": "https://pbs.twimg.com/profile_images/2497960292/image.jpg",
-  "keywords": ["api.ai", "natural language"],
-  "addons": ["heroku-postgresql:hobby-dev", "scheduler:standart"]
+  "keywords": ["natural language"],
+  "image": "heroku/python",
+  "env": {
+    "SECRET_KEY": {
+      "description": "Your bot token",
+      "value": ""
+    },
+    "SECRET_KEY_SIMSIMI": {
+      "description": "Your token for SIMSIMI",
+      "value": ""
+    },
+    "LN": {
+      "description": "Your language",
+      "value": ""
+    }
+  }
 }
