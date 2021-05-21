@@ -1,3 +1,10 @@
+erroapi = [
+	'kié',
+	'q foi',
+	'SEU ARROMBADO FDP',
+	'O que vc quer comigo me deixa em paz poha!!!',
+	'POLICIA AQUI E SimSimi TEM UM CARA ME SAKEANDO SOCORU']
+
 languages = {
 	"en": [{ #ingles
 		'about': '''SimSimi (chim chim, Korean for "심심", meaning bored) is a talk set created in 2002 by ISMaker

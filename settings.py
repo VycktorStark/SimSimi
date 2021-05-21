@@ -1,14 +1,12 @@
-import lang, os, random
-TR = lang.languages
+import lang, os
+
 LN = os.environ['LN']
+TR = lang.languages
+Sudo_ID = 438131290
+
+SimSimi = dict(url='http://api.simsimi.com/request.p', ft="2.3", lc='LN', text='Hi')
+SimSimi['key']  = os.environ['SECRET_KEY_SIMSIMI']
+ErroApiSimSimi = lang.erroapi
+
 SECRET_KEY = os.environ['SECRET_KEY']
-SECRET_KEY_SIMSIMI = os.environ['SECRET_KEY_SIMSIMI']
 TELEGRAM_API = f'https://api.telegram.org/bot{SECRET_KEY}/setWebhook'
-APISIMSIMI = 'http://api.simsimi.com/request.p'
-ERROAPISIMSIMI = random.choice([
-	'kié',
-	'q foi',
-	"SEU ARROMBADO FDP",
-	'O que vc quer comigo me deixa em paz poha!!!',
-	'POLICIA AQUI E SimSimi TEM UM CARA ME SAKEANDO SOCORU'])
-MSGTERMINAL = "User {} with the id {}\nsend: {}\nresponse is: {}"
